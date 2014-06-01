@@ -8,7 +8,7 @@ class Scraper {
 		return \Katu\Utils\FS::joinPaths(TMP_PATH, implode('/', array_map('strtolower', array_slice(explode('\\', get_called_class()), 1))));
 	}
 
-	static function getURL($url, $timeout = NULL) {
+	static function scrape($url, $timeout = NULL) {
 		$cacheOptions = array(
 			'dir' => static::getCacheDirectory(),
 		);
