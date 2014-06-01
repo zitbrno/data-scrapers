@@ -28,4 +28,8 @@ class Zapis extends \ZitBrno\Scrapers\Scraper {
 		return TURL::make($match[1]);
 	}
 
+	public function getSeznamHlasovani() {
+
+	}
+
 }
