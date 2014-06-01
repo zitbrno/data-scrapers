@@ -28,6 +28,19 @@ class Zapis extends \ZitBrno\Scrapers\Scraper {
 		return TURL::make($match[1]);
 	}
 
+	public function getBody() {
+		$src = static::scrape($this->getDocumentURL());
+
+		preg_match_all('#<TR><TD WIDTH="5%" VALIGN="TOP">\s*<B><SPAN LANG="CS"><P ALIGN="RIGHT">(?<cislo>[0-9]+).</B></SPAN></TD>\s*<TD WIDTH="95%" VALIGN="TOP">\s*<B><U><SPAN LANG="CS"><P>(?<nazev>.+)</P>\s*</B></U>(?<text>.+)</SPAN></TD>\s*</TR>#sU', $src, $matches, PREG_SET_ORDER);
+
+		$res = array();
+		foreach ($matches as $match) {
+			$res[] = new Bod($match['cislo'], $match['nazev'], $match['text']);
+		}
+
+		return $res;
+	}
+
 	public function getSeznamHlasovani() {
 		$src = static::scrape($this->getDocumentURL());
 
