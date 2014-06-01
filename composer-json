@@ -1,0 +1,19 @@
+{
+	"name": "zitbrno/data-scrapers",
+	"description": "Scrapers for Žít Brno Open Data",
+	"type": "library",
+	"repositories": [
+		{
+			"url": "https://github.com/criq/katu.git",
+			"type": "git"
+		}
+	],
+	"require": {
+		"jabli/katu": "dev-master"
+	},
+	"autoload": {
+		"psr-4": {
+			"ZitBrno\\Scrapers\\": "./src/"
+		}
+	}
+}
