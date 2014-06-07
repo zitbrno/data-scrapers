@@ -13,7 +13,7 @@ class Scraper {
 			'dir' => static::getCacheDirectory(),
 		);
 
-		return \Katu\Utils\Cache::getURL($url, $timeout, $cacheOptions);
+		return \Katu\Utils\Cache::getUrl($url, $timeout, $cacheOptions);
 	}
 
 }

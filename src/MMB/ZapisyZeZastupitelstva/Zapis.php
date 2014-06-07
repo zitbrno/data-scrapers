@@ -14,14 +14,14 @@ class Zapis extends \ZitBrno\Scrapers\Scraper {
 		$this->id = (int) $id;
 	}
 
-	public function getURL() {
+	public function getUrl() {
 		return TURL::make(static::BASE_URL, array(
 			'cislo' => $this->id,
 		));
 	}
 
 	public function getDocumentURL() {
-		$src = static::scrape($this->getURL());
+		$src = static::scrape($this->getUrl());
 
 		preg_match('#<iframe src="(http://www2.brno.cz/dokumenty/soubor.php\?cislo=([0-9]+)&typ=[0-9]+)" width="800" height="600" align="center" frameborder="0" class="textdokumenty">#', $src, $match);
 
