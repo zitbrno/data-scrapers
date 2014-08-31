@@ -44,11 +44,14 @@ class Zapis extends \ZitBrno\Scrapers\Scraper {
 	public function getSeznamHlasovani() {
 		$src = static::scrape($this->getDocumentURL());
 
-		preg_match_all('#<A HREF="(.+)"><B><I><U><FONT COLOR="\#0000ff"><SPAN LANG="CS">protokol o hlasování zde</B></I></U></FONT></SPAN></A>#', $src, $matches, PREG_SET_ORDER);
-
 		$res = array();
-		foreach ($matches as $match) {
-			$res[] = new Hlasovani($match[1]);
+
+		if (preg_match_all('#<A\s+HREF="(?<url>.+)">(<B>)?(<I>)?(<U>)?(<FONT COLOR="\#0000ff">)?(<SPAN LANG="CS">)?protokol\s+o\s+hlasování\s+zde(</I>)?(</B>)?(</I>)?(</U>)?(</FONT>)?(</SPAN>)?</A>#Ui', $src, $matches, PREG_SET_ORDER)) {
+			foreach ($matches as $match) {
+				$res[] = new Hlasovani($match['url']);
+			}
+		} else {
+			#echo $src; die;
 		}
 
 		return $res;

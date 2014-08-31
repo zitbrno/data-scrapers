@@ -13,23 +13,25 @@ class Hlasovani extends \ZitBrno\Scrapers\Scraper {
 	}
 
 	static function scrape($url, $timeout = NULL) {
-		return iconv('Windows-1250', 'UTF-8', parent::scrape($url, $timeout));
+		return iconv('Windows-1250', 'UTF-8//TRANSLIT//IGNORE', parent::scrape($url, $timeout));
 	}
 
 	public function getZapisCislo() {
 		$src = static::scrape($this->url);
 
-		preg_match('#<p class="header">Zastupitelstvo města Brna č. (.+)<br/>#', $src, $match);
-
-		return $match[1];
+		if (preg_match('#<p class="header">Zastupitelstvo města Brna č. (.+)<br/>#', $src, $match)) {
+			return $match[1];
+		} else {
+			#echo $this->url;
+		}
 	}
 
 	public function getCislo() {
 		$src = static::scrape($this->url);
 
-		preg_match('#<p class="header">.*Hlasování č. ([0-9]+)<br>.*</p>#sU', $src, $match);
-
-		return (int) $match[1];
+		if (preg_match('#<p class="header">.*Hlasování č. ([0-9]+)<br>.*</p>#sU', $src, $match)) {
+			return (int) $match[1];
+		}
 	}
 
 	public function getBodCislo() {
@@ -61,17 +63,17 @@ class Hlasovani extends \ZitBrno\Scrapers\Scraper {
 	public function getNazev() {
 		$src = static::scrape($this->url);
 
-		preg_match('#<center><b>(.+)</b></center>#sU', $src, $match);
-
-		return trim($match[1]);
+		if (preg_match('#<center><b>(.+)</b></center>#sU', $src, $match)) {
+			return trim($match[1]);
+		}
 	}
 
 	public function getDatum() {
 		$src = static::scrape($this->url);
 
-		preg_match('#<p class="header">Zastupitelstvo města Brna č. (.+)<br/> (.+)</p>#', $src, $match);
-
-		return \Katu\Utils\DateTime::get($match[2]);
+		if (preg_match('#<p class="header">Zastupitelstvo města Brna č. (.+)<br/> (.+)</p>#', $src, $match)) {
+			return \Katu\Utils\DateTime::get($match[2]);
+		}
 	}
 
 	public function getHlasy() {

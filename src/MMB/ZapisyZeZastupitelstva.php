@@ -22,6 +22,4 @@ class ZapisyZeZastupitelstva extends \ZitBrno\Scrapers\Scraper {
 		return $res;
 	}
 
-
-
 }
