@@ -2,14 +2,14 @@
 
 namespace ZitBrno\Scrapers\MMB\ZapisyZeZastupitelstva;
 
-use \Katu\Types\TURL;
+use \Katu\Types\TUrl;
 
 class Hlasovani extends \ZitBrno\Scrapers\Scraper {
 
 	public $url;
 
 	public function __construct($url) {
-		$this->url = TURL::make($url);
+		$this->url = TUrl::make($url);
 	}
 
 	static function scrape($url, $timeout = NULL) {

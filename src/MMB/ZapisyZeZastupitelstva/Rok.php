@@ -2,7 +2,7 @@
 
 namespace ZitBrno\Scrapers\MMB\ZapisyZeZastupitelstva;
 
-use \Katu\Types\TURL;
+use \Katu\Types\TUrl;
 
 class Rok extends \ZitBrno\Scrapers\Scraper {
 
@@ -15,7 +15,7 @@ class Rok extends \ZitBrno\Scrapers\Scraper {
 	}
 
 	public function getUrl() {
-		return TURL::make(static::BASE_URL, array(
+		return TUrl::make(static::BASE_URL, array(
 			'dokument' => 3,
 			'rok'      => $this->rok,
 			'platnost' => 1,

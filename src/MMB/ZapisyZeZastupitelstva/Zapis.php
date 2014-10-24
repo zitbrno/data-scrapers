@@ -2,7 +2,7 @@
 
 namespace ZitBrno\Scrapers\MMB\ZapisyZeZastupitelstva;
 
-use \Katu\Types\TURL;
+use \Katu\Types\TUrl;
 
 class Zapis extends \ZitBrno\Scrapers\Scraper {
 
@@ -15,7 +15,7 @@ class Zapis extends \ZitBrno\Scrapers\Scraper {
 	}
 
 	public function getUrl() {
-		return TURL::make(static::BASE_URL, array(
+		return TUrl::make(static::BASE_URL, array(
 			'cislo' => $this->id,
 		));
 	}
@@ -25,7 +25,7 @@ class Zapis extends \ZitBrno\Scrapers\Scraper {
 
 		preg_match('#<iframe src="(http://www2.brno.cz/dokumenty/soubor.php\?cislo=([0-9]+)&typ=[0-9]+)" width="800" height="600" align="center" frameborder="0" class="textdokumenty">#', $src, $match);
 
-		return TURL::make($match[1]);
+		return TUrl::make($match[1]);
 	}
 
 	public function getBody() {

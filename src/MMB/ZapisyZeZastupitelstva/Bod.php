@@ -2,7 +2,7 @@
 
 namespace ZitBrno\Scrapers\MMB\ZapisyZeZastupitelstva;
 
-use \Katu\Types\TURL;
+use \Katu\Types\TUrl;
 
 class Bod extends \ZitBrno\Scrapers\Scraper {
 
